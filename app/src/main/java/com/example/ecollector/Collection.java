@@ -9,52 +9,51 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.ecollector.model.CollectionModel;
+import com.example.ecollector.model.ItemModel;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
+public class Collection extends AppCompatActivity {
     Button button;
-    ArrayList<CollectionModel> collections = new ArrayList<>();
+    ArrayList<ItemModel> items = new ArrayList<>();
     private SettingsButtonFragment _settingFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_collection);
+
         _settingFragment = new SettingsButtonFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, _settingFragment)
                 .commit();
 
-        collections.add(new CollectionModel((long) 1,"znaczki"));
-        collections.add(new CollectionModel((long) 2,"pocztówki"));
-        collections.add(new CollectionModel((long) 3,"monety"));
-        collections.add(new CollectionModel((long) 4,"książki"));
+        items.add(new ItemModel((long) 1,"aaa", "Lorem ipsum", 2));
+        items.add(new ItemModel((long) 2,"aadasda", "Lorem ipsums", 3));
 
         button = findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
-                Intent myIntent = new Intent(MainActivity.this,
-                        NewCollection.class);
+                Intent myIntent = new Intent(Collection.this,
+                        NewItem.class);
                 startActivity(myIntent);
             }
         });
 
         final ListView listView = findViewById(R.id.listView1);
-        ArrayAdapter<CollectionModel> itemsAdapter = new ArrayAdapter<>(this, R.layout.row, collections);
+        ArrayAdapter<ItemModel> itemsAdapter = new ArrayAdapter<>(this, R.layout.rowitem, items);
         listView.setAdapter(itemsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Intent myIntent = new Intent(MainActivity.this,
-                        Collection.class);
+                Intent myIntent = new Intent(Collection.this,
+                        Item.class);
                 startActivity(myIntent);
 
             }
         });
-
     }
+
 }

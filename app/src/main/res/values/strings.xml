@@ -1,6 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ECollector</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_collection">Dodaj nową kolekcje</string>
+    <string name="add_item">Dodaj nowy przedmiot</string>
+    <string name="settings">Ustawienia</string>
+    <string name="add">Dodaj</string>
+    <string name="name">Nazwa</string>
+    <string name="desc">Opis</string>
+    <string name="value">Wartość</string>
+    <string name="add_collection_name">Podaj nazwe kolekcji:</string>
+    <string name="add_item_name">Podaj nazwę przedmiotu</string>
+    <string name="add_desc">Wpisz opis</string>
+    <string name="add_value">Podaj wartość:</string>
+    <string name="delete_item">Usuń Przedmiot</string>
 </resources>
