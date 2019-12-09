@@ -14,7 +14,7 @@ public final class ItemTable {
         sb.append("CREATE TABLE " + ItemTable.TABLE_NAME + " (");
         sb.append(BaseColumns._ID + " INTEGER PRIMARY KEY, ");
         sb.append(ItemTable.NAME + " TEXT, ");
-        sb.append(ItemTable.DESCRIPTION + " TEXT ");
+        sb.append(ItemTable.DESCRIPTION + " TEXT, ");
         sb.append(ItemTable.VALUE + " REAL ");
         sb.append(");");
         db.execSQL(sb.toString());

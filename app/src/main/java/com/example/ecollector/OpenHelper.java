@@ -23,7 +23,7 @@ public class OpenHelper  extends SQLiteOpenHelper {
 
 
     OpenHelper(final Context context) {
-        super(context, "bazka11", null, 11);
+        super(context, "bazka12", null, 11);
         this.context = context;
     }
 

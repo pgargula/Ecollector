@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, _settingFragment)
                 .commit();
 
-        //dataManager = new DataManager(getApplicationContext());
+        dataManager = new DataManager(getApplicationContext());
         collections.add(new CollectionModel((long) 1,"znaczki"));
         collections.add(new CollectionModel((long) 2,"pocztówki"));
         collections.add(new CollectionModel((long) 3,"monety"));
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final ListView listView = findViewById(R.id.listView1);
-        ArrayAdapter<CollectionModel> itemsAdapter = new ArrayAdapter<>(this, R.layout.row, collections /*dataManager.getAllCollections()*/);
+        ArrayAdapter<CollectionModel> itemsAdapter = new ArrayAdapter<>(this, R.layout.row, dataManager.getAllCollections());
         listView.setAdapter(itemsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
