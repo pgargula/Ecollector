@@ -1,11 +1,15 @@
 package com.example.ecollector.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemModel {
 
     private Long id;
     private String name;
     private String description;
     private double value;
+    private List<CollectionModel> collections;
 
     public ItemModel(Long id,String name, String description, double value)
     {
@@ -13,6 +17,10 @@ public class ItemModel {
         this.name = name;
         this.description= description;
         this.value=value;
+        this.collections = new ArrayList<>();
+    }
+    public void setCollections(List<CollectionModel> collections) {
+        this.collections = collections;
     }
 
     public Long getId() {
@@ -42,6 +50,7 @@ public class ItemModel {
     public double getValue() {
         return value;
     }
+    public List<CollectionModel> getCollections() { return collections; }
 
     public void setValue(double value) {
         this.value = value;

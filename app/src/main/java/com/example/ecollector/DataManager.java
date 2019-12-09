@@ -1,11 +1,14 @@
 package com.example.ecollector;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.example.ecollector.DAOs.CollectionItemDAO;
 import com.example.ecollector.DAOs.CollectionsDao;
 import com.example.ecollector.DAOs.ItemDao;
+import com.example.ecollector.model.CollectionItemModel;
+import com.example.ecollector.model.CollectionModel;
 import com.example.ecollector.model.ItemModel;
 
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class DataManager {
     private CollectionsDao collectionDao;
     private CollectionItemDAO collectionItemDao;
 
- /*   public DataManager(Context context) {
+    public DataManager(Context context) {
         this.context = context;
         SQLiteOpenHelper openHelper = new OpenHelper(this.context);
         db = openHelper.getWritableDatabase();
@@ -27,37 +30,37 @@ public class DataManager {
         collectionItemDao = new CollectionItemDAO(db);
     }
 
-    public ItemModel getStudent(long itemId) {
+    public ItemModel getItem(long itemId) {
         ItemModel item = itemDao.get(itemId);
         if (item != null) {
-            List<Collection> groups = new ArrayList<>();
+            List<CollectionModel> collections = new ArrayList<>();
             for(long id : collectionItemDao.getGroupIds(item.getId()))
-                groups.add(getGroup(id));
-            item.getGroups().addAll(groups);
+                collections.add(getCollection(id));
+            item.getCollections().addAll(collections);
         }
         return item;
     }
 
-    public List<Student> getStudents() {
+    public List<ItemModel> getItems() {
         return itemDao.getAll();
     }
 
-    public long saveStudent(Student student) {
-        long studentId = 0L;
+    public long saveItem(ItemModel item) {
+        long itemId = 0L;
         try {
             db.beginTransaction();
-            studentId = itemDao.save(student);
-            if (student.getGroups().size() > 0) {
-                for (Group c : student.getGroups()) {
-                    long groupId = 0L;
-                    Group dbGroup = collectionDao.find(c.getName());
-                    if (dbGroup == null) {
-                        groupId = collectionDao.save(c);
+            itemId = itemDao.save(item);
+            if (item.getCollections().size() > 0) {
+                for (CollectionModel c : item.getCollections()) {
+                    long collectionId = 0L;
+                    CollectionModel dbCollection = collectionDao.find(c.getName());
+                    if (dbCollection == null) {
+                        collectionId = collectionDao.save(c);
                     } else {
-                        groupId = dbGroup.getId();
+                        collectionId = dbCollection.getId();
                     }
-                    Student_Group sgKey =
-                            new Student_Group(studentId, groupId);
+                    CollectionItemModel sgKey =
+                            new CollectionItemModel(itemId, collectionId);
                     if (!collectionItemDao.exists(sgKey)) {
                         collectionItemDao.save(sgKey);
                     }
@@ -65,23 +68,24 @@ public class DataManager {
             }
             db.setTransactionSuccessful();
         } catch (SQLException e) {
-            studentId = 0L;
+            itemId = 0L;
         } finally {
             db.endTransaction();
         }
-        return studentId;
+        return itemId;
     }
 
-    public Group getGroup(long groupId) {
-        return collectionDao.get(groupId);
+    public CollectionModel getCollection(long collectionId) {
+        return collectionDao.get(collectionId);
     }
-    public List<Group> getAllGroups() {
+    public List<CollectionModel> getAllCollections() {
         return collectionDao.getAll();
     }
-    public Group findGroup(String name) {
+    public CollectionModel findCollection(String name) {
         return collectionDao.find(name);
     }
-    public long saveGroup(Group group) {
-        return collectionDao.save(group);
-    }*/
+    public long saveGroup(CollectionModel collection) {
+        return collectionDao.save(collection);
+    }
+
 }

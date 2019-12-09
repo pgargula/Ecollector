@@ -8,12 +8,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.example.ecollector.model.CollectionModel;
 import com.example.ecollector.model.ItemModel;
 
 import java.util.ArrayList;
 
-public class Collection extends AppCompatActivity {
+public class CollectionActivity extends AppCompatActivity {
     Button button;
     ArrayList<ItemModel> items = new ArrayList<>();
     private SettingsButtonFragment _settingFragment;
@@ -34,7 +33,7 @@ public class Collection extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
-                Intent myIntent = new Intent(Collection.this,
+                Intent myIntent = new Intent(CollectionActivity.this,
                         NewItem.class);
                 startActivity(myIntent);
             }
@@ -48,7 +47,7 @@ public class Collection extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Intent myIntent = new Intent(Collection.this,
+                Intent myIntent = new Intent(CollectionActivity.this,
                         Item.class);
                 startActivity(myIntent);
 

@@ -11,9 +11,11 @@ import android.os.Bundle;
 import com.example.ecollector.model.CollectionModel;
 
 import java.util.ArrayList;
+import java.util.zip.DataFormatException;
 
 public class MainActivity extends AppCompatActivity {
 
+    DataManager dataManager;
     Button button;
     ArrayList<CollectionModel> collections = new ArrayList<>();
     private SettingsButtonFragment _settingFragment;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, _settingFragment)
                 .commit();
 
+        //dataManager = new DataManager(getApplicationContext());
         collections.add(new CollectionModel((long) 1,"znaczki"));
         collections.add(new CollectionModel((long) 2,"pocztówki"));
         collections.add(new CollectionModel((long) 3,"monety"));
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final ListView listView = findViewById(R.id.listView1);
-        ArrayAdapter<CollectionModel> itemsAdapter = new ArrayAdapter<>(this, R.layout.row, collections);
+        ArrayAdapter<CollectionModel> itemsAdapter = new ArrayAdapter<>(this, R.layout.row, collections /*dataManager.getAllCollections()*/);
         listView.setAdapter(itemsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Intent myIntent = new Intent(MainActivity.this,
-                        Collection.class);
+                        CollectionActivity.class);
                 startActivity(myIntent);
 
             }

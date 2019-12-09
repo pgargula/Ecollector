@@ -14,7 +14,7 @@ public class ItemDao implements IDao<ItemModel> {
 
     private static final String INSERT =
             "insert into " + ItemTable.TABLE_NAME
-                    + "(" + ItemTable.NAME + ", " + ItemTable.DESCRIPTION + ItemTable.VALUE + ") values (?, ?, ?)";
+                    + "(" + ItemTable.NAME + ", " + ItemTable.DESCRIPTION + ", " + ItemTable.VALUE + ") values (?, ?, ?)";
     private SQLiteDatabase db;
     private SQLiteStatement insertStatement;
 
