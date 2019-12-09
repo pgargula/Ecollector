@@ -8,10 +8,10 @@ public class ItemModel {
     private Long id;
     private String name;
     private String description;
-    private double value;
+    private Long value;
     private List<CollectionModel> collections;
 
-    public ItemModel(Long id,String name, String description, double value)
+    public ItemModel(Long id,String name, String description, Long value)
     {
         this.id=id;
         this.name = name;
@@ -52,7 +52,7 @@ public class ItemModel {
     }
     public List<CollectionModel> getCollections() { return collections; }
 
-    public void setValue(double value) {
+    public void setValue(Long value) {
         this.value = value;
     }
     @Override

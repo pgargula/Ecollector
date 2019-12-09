@@ -52,8 +52,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                int itemPosition     = position;
+                // ListView Clicked item value
+               // String  itemValue    = (String) listView.getItemAtPosition(position);
+
                 Intent myIntent = new Intent(MainActivity.this,
                         CollectionActivity.class);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myIntent.putExtra("id", itemPosition);
                 startActivity(myIntent);
 
             }
