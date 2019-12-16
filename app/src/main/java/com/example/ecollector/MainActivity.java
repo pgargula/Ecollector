@@ -17,16 +17,23 @@ public class MainActivity extends AppCompatActivity {
 
     DataManager dataManager;
     Button button;
+    Button button5;
     ArrayList<CollectionModel> collections = new ArrayList<>();
     private SettingsButtonFragment _settingFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        _settingFragment = new SettingsButtonFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, _settingFragment)
-                .commit();
+
+        button5 = findViewById(R.id.button5);
+        button5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent myIntent = new Intent(MainActivity.this,
+                        Settings.class);
+                startActivity(myIntent);
+            }
+        });
+
 
         dataManager = new DataManager(getApplicationContext());
         collections.add(new CollectionModel((long) 1,"znaczki"));

@@ -58,6 +58,6 @@ public class Settings extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(langPref, lang);
-        editor.commit();
+        editor.apply();
     }
 }
